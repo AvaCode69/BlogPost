@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  display: inherit !important;
+  background: #f4f4f4 !important;
+  font-family: "Roboto", sans-serif !important;
+}
+body,
+a,
+p,
+input,
+label {
+  font-family: "Roboto", sans-serif !important;
+}
+nav {
+  background-color: #ee6e7300 !important;
+  box-shadow: none !important;
+}
+.bg-sec-header {
+  background: url("./images/Header.jpg") no-repeat;
+  background-size: auto;
+  min-height: 390px;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+.logo-img {
+  width: 285px;
+  height: 93px;
+}
+nav ul a {
+  color: #fff;
+  font-size: 20px;
+}
+.nav-wrapper {
+  padding-top: 3rem;
+}
+.content-sec {
+  padding: clamp(1rem, 6vw, 6rem);
+  padding-top: 4rem;
+  justify-content: space-around;
+}
+.post-list,
+.all-post-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background: #fff;
+  padding: 2rem;
+}
+.form-box {
+  background: #fff;
+  padding: 2rem;
+  line-height: 3rem;
+}
+.form-box .form-label {
+  margin-bottom: 0 !important;
+}
+.submit-btn,
+.load-more {
+  background: #f27623;
+  padding: 0 7rem;
+  border-radius: 3rem;
+  margin: 0 auto;
+  margin-top: 0px;
+  display: block;
+  margin-top: 2rem;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  height: 3rem;
+  border: none !important;
+}
+.main .card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.nav-item a {
+  font-size: 18px !important;
+  text-decoration: none;
+  color: #fff;
+}
+.nav-link:focus,
+.nav-link:hover {
+  color: #fff !important;
+}
+.is-active::before {
+  /* border-bottom: 3px solid #e95e30; */
+}
+
+.nav-link::before {
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 2px;
+  bottom: -31px;
+  left: 0;
+  background-color: #ff470b;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.15s ease-in-out 0s;
+  transition: all 0.15s ease-in-out 0s;
+  display: block;
+}
+
+/* .is-active:hover::before, */
+.is-active::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+.card-text {
+  color: #868686;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: justify;
+}
+.card {
+  border: none !important;
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); */
+  border-radius: 0 !important;
+  margin: 0 1.3rem;
+}
+.card-body {
+  height: 26vh;
+}
+.post-list .card {
+  margin: 0 1.3rem;
+}
+.all-post-list {
+  margin-top: 3rem;
+}
+.pagination-sec button {
+  background: #f27623;
+  margin: 0 5px;
+  margin-top: 0px;
+  margin-top: 0px;
+  color: #fff;
+  font-size: 18px;
+  height: 3rem;
+  border: none !important;
+  width: 41px !important;
+}
+.pagination-sec {
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.blog-page {
+  margin-bottom: 3rem;
+  background: #fff;
+}
+.pagination li a {
+  border: none !important;
+  background: none;
+  color: #383838;
+}
+.active > .page-link,
+.page-link.active,
+.page-link:hover,
+.page-link:focus {
+  background-color: #f2f2f2 !important;
+  border-radius: 17px !important;
+  color: #383838 !important;
+}
+.active > .page-link,
+.page-link.active {
+  color: #383838 !important;
+  font-weight: 900;
+}
+.page-prev-link a,
+.page-next-item a {
+  color: #f27623 !important;
+}
+.page-link:focus {
+  box-shadow: none !important;
+}
+.page-item:not(:first-child) .page-link {
+  margin-left: 5px !important;
+}
+.page-title {
+  position: absolute;
+  text-align: center;
+  right: 0;
+  left: 0;
+  top: 10rem;
+  color: #fff;
+  font-size: 67px !important;
+  font-weight: 700;
+}
+.date-cat {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  top: -3rem;
+  color: #fff;
+  font-style: italic;
+  padding: 0 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    padding: 0 !important;
+  }
+  .form-box {
+    min-height: 820px;
+  }
+}
