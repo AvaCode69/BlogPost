@@ -210,6 +210,22 @@ nav ul a {
   font-style: italic;
   padding: 0 1rem;
 }
+.upload-btn {
+  width: 15rem;
+  background-color: #fafafa;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.upload-btn button {
+  background: #7d7d7d;
+  border: none;
+  color: #fff;
+  padding: 0 1.5rem;
+  border-radius: 33px;
+}
 
 @media screen and (min-width: 768px) {
   .main {

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import CallPost from "./CallPost";
 import React from "react";
+import { FaBeer, FaCamera } from "react-icons/fa";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -9,6 +12,8 @@ function SubmitPost() {
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
   const [post, setPost] = useState([]);
+  const [fileName, setFileName] = useState("");
+  const hiddenFileInput = React.useRef(null);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +49,14 @@ function SubmitPost() {
       console.log(err);
     }
   };
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleChange_img = (event) => {
+    setImage(event.target.value);
+    const fileUploaded = event.target.files[0];
+    setFileName(event.target.value);
+  };
 
   return (
     <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12   form-box  ">
@@ -76,15 +89,25 @@ function SubmitPost() {
         <label for="exampleFormControlInput1" className="form-label mt-3">
           Image Post
         </label>
+        <div className="upload-btn">
+          {/* {<FontAwesomeIcon icon={faCamera} size="2x" color="#ccc" />} */}
+          <FaCamera size="30px" color="#ccc" mt-5 />
+          <button type="button" onClick={handleClick}>
+            Choose file
+          </button>
+        </div>
         <input
           type="file"
           name="image"
           accept="image/*"
           value={image}
           id="formFile"
+          ref={hiddenFileInput}
           className="form-control"
-          onChange={(e) => setImage(e.target.value)}
+          onChange={handleChange_img}
+          hidden
         />
+        <p>{fileName}</p>
         <label for="exampleFormControlInput1" className="form-label mt-3">
           Content Post
         </label>
