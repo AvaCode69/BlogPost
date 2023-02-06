@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { FaBeer, FaCamera } from "react-icons/fa";
+import { FaCamera } from "react-icons/fa";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -79,7 +79,7 @@ function SubmitPost() {
   };
 
   return (
-    <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12   form-box  ">
+    <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12   form-box  ">
       <h2>Post a Content</h2>
       <form onSubmit={handleSubmit} className="mb-3">
         <label for="exampleFormControlInput1" className="form-label">

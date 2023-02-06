@@ -7,9 +7,13 @@ import SubmitPost from "./SubmitPost";
 
 function Home() {
   return (
-    <section className="row content-sec  ">
-      <SubmitPost />
-      <CallPost />
+    <section className="main py-5">
+      <div className="container">
+        <div className="row justify-content-around">
+          <SubmitPost />
+          <CallPost />
+        </div>
+      </div>
     </section>
   );
 }

@@ -7,10 +7,8 @@ import NavBars from "./Components/NavBars";
 
 function App() {
   return (
-    <div className="container-fluid main">
+    <div>
       <NavBars />
-
-      <di></di>
     </div>
   );
 }

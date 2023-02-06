@@ -52,30 +52,29 @@ function CallPost() {
   }, []);
 
   return (
-    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12   post-list">
-      {post.slice(0, visible).map((item, index) => (
-        <div
-          className="card  mb-4 Regular shadow"
-          style={{ width: "18rem" }}
-          key={item.id}
-        >
-          <img src={postImg} className="card-img-top" alt={item.title} />
-          <div className="date-cat">
-            {" "}
-            <p className="cat-post">{item.category.name}</p>
-            <p className="post-date">{item.created_at.slice(0, 10)}</p>
+    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 wrap-post ">
+      <div className="post-list mt-4">
+        {post.slice(0, visible).map((item, index) => (
+          <div className="card  mb-4 Regular shadow" key={item.id}>
+            <img src={postImg} className="card-img-top" alt={item.title} />
+            <div className="date-cat">
+              {" "}
+              <p className="cat-post">{item.category.name}</p>
+              <p className="post-date">{item.created_at.slice(0, 10)}</p>
+            </div>
+            <div className="card-body">
+              <h5 className="card-title">{item.title}</h5>
+              <p className="card-text">{item.content.substring(0, 200)}</p>
+            </div>
           </div>
-          <div className="card-body">
-            <h5 className="card-title">{item.title}</h5>
-            <p className="card-text">{item.content.substring(0, 200)}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
       {visible < pageCount && (
         <button
           onClick={() => setVisible(visible + 4)}
           type="button"
-          className="load-more"
+          className="submit-btn"
         >
           Load more
         </button>

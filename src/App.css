@@ -23,16 +23,17 @@ nav {
 .bg-sec-header {
   background: url("./images/Header.jpg") no-repeat;
   background-size: auto;
-  min-height: 390px;
+  min-height: 450px;
   background-size: cover;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding-top: 2rem;
+  padding-top: 3rem;
 }
 .logo-img {
   width: 285px;
   height: 93px;
+  margin-top: -26px;
 }
 nav ul a {
   color: #fff;
@@ -41,17 +42,18 @@ nav ul a {
 .nav-wrapper {
   padding-top: 3rem;
 }
-.content-sec {
-  padding: clamp(1rem, 6vw, 6rem);
-  padding-top: 4rem;
-  justify-content: space-around;
+.wrap-post {
+  background: #fff;
+  padding: 2rem;
 }
 .post-list,
 .all-post-list {
-  display: flex;
-  flex-wrap: wrap;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.all-post-list {
   padding: 2rem;
 }
 .form-box {
@@ -135,9 +137,6 @@ nav ul a {
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
-}
-.post-list .card {
-  margin: 0 1.3rem;
 }
 .all-post-list {
   margin-top: 3rem;
@@ -234,10 +233,14 @@ nav ul a {
   padding: 1.3rem 1rem;
 }
 @media screen and (min-width: 768px) {
-  .main {
-    padding: 0 !important;
-  }
   .form-box {
     min-height: 820px;
+  }
+  .post-list,
+  .all-post-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .all-post-list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

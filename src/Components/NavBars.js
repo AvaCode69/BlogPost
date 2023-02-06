@@ -13,8 +13,9 @@ import logo from "../images/logo.svg";
 export default function NavBars() {
   return (
     <Router>
-      <header className="container-fluid bg-sec-header">
+      <header className="bg-sec-header">
         <img className="logo-img" src={logo}></img>
+
         <ul className="nav">
           <li className="nav-item">
             <NavLink
