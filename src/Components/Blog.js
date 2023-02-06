@@ -9,7 +9,22 @@ function Blog() {
   const [pageCount, setpageCount] = useState(0);
 
   let limit = 8;
+  useEffect(() => {
+    var myHeaders = new Headers();
+    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: myHeaders,
+    };
 
+    fetch("https://frontend-case-api.sbdev.nl/api/posts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setpageCount(result.total);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
   useEffect(() => {
     var myHeaders = new Headers();
     myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
@@ -20,7 +35,7 @@ function Blog() {
     };
     const getComments = async () => {
       const res = await fetch(
-        `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${limit}&sortBy=title&sortDirection=desc`,
+        `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${limit}&sortDirection=desc`,
         requestOptions
 
         //   `http://localhost:3004/comments?_page=1&_limit=${limit}`
@@ -28,8 +43,6 @@ function Blog() {
       );
 
       const result = await res.json();
-
-      setpageCount(20);
       // console.log(Math.ceil(total/12));
       //   console.log("total " + total);
       setItems(result.data);
@@ -47,10 +60,8 @@ function Blog() {
       headers: myHeaders,
     };
     const res = await fetch(
-      `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${limit}&sortBy=title&sortDirection=desc`,
+      `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${limit}&sortDirection=desc`,
       requestOptions
-      // `http://localhost:3004/comments?_page=${currentPage}&_limit=${limit}`
-      // `https://jsonplaceholder.typicode.com/comments?_page=${currentPage}&_limit=${limit}`
     );
     const result = await res.json();
     return result.data;
@@ -82,11 +93,11 @@ function Blog() {
               <div className="date-cat">
                 {" "}
                 <p className="cat-post">{item.category.name}</p>
-                <p className="post-date">2023-02-03</p>
+                <p className="post-date">{item.created_at.slice(0, 10)}</p>
               </div>
               <div className="card-body">
                 <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">{item.content}</p>
+                <p className="card-text">{item.content.substring(0, 200)}</p>
               </div>
             </div>
           );

@@ -6,7 +6,24 @@ function CallPost() {
   const [post, setPost] = useState([]);
   const [error, setError] = useState(false);
   const [visible, setVisible] = useState(4);
-  const [postLenght, setPostLenght] = useState();
+  const [pageCount, setpageCount] = useState(0);
+
+  useEffect(() => {
+    var myHeaders = new Headers();
+    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: myHeaders,
+    };
+
+    fetch("https://frontend-case-api.sbdev.nl/api/posts", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setpageCount(result.total);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
   useEffect(() => {
     var myHeaders = new Headers();
@@ -19,14 +36,12 @@ function CallPost() {
 
     let res = fetch(
       "https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=50",
-
       // "https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=30&sortBy=title&sortDirection=asc&searchPhrase=new post&categoryId=1",
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => {
         setPost(result.data);
-        setPostLenght(result.data.length);
       })
 
       .catch((error) => {
@@ -48,15 +63,15 @@ function CallPost() {
           <div className="date-cat">
             {" "}
             <p className="cat-post">{item.category.name}</p>
-            <p className="post-date">2023-02-03</p>
+            <p className="post-date">{item.created_at.slice(0, 10)}</p>
           </div>
           <div className="card-body">
             <h5 className="card-title">{item.title}</h5>
-            <p className="card-text">{item.content}</p>
+            <p className="card-text">{item.content.substring(0, 200)}</p>
           </div>
         </div>
       ))}
-      {visible < postLenght && (
+      {visible < pageCount && (
         <button
           onClick={() => setVisible(visible + 4)}
           type="button"

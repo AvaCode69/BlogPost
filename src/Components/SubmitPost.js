@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import CallPost from "./CallPost";
 import React from "react";
 import { FaBeer, FaCamera } from "react-icons/fa";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -11,36 +8,59 @@ function SubmitPost() {
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
-  const [post, setPost] = useState([]);
+  const [choose_category, setChoose_category] = useState([]);
   const [fileName, setFileName] = useState("");
   const hiddenFileInput = React.useRef(null);
+
+  useEffect(() => {
+    var myHeaders = new Headers();
+    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+      headers: myHeaders,
+    };
+
+    fetch("https://frontend-case-api.sbdev.nl/api/categories", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setChoose_category(result);
+        console.log(result);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      var myHeaders = new Headers();
-      myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+      var formdata = new FormData();
+      formdata.append("title", title);
+      formdata.append("content", content);
+      formdata.append("category_id", category_id);
+      formdata.append("image", image);
+
+      var myHeaders = new Headers({
+        token: "pj11daaQRz7zUIH56B9Z",
+      });
+
       let res = await fetch(
         "https://frontend-case-api.sbdev.nl/api/posts",
-        { headers: myHeaders },
+
         {
           method: "POST",
-          body: JSON.stringify({
-            title: title,
-            content: content,
-            category_id: category_id,
-            image: image,
-          }),
+          headers: myHeaders,
+          body: formdata,
           redirect: "follow",
         }
       );
       let resJson = await res.json();
       if (res.status >= 200 && res.status <= 299) {
-        setPost("");
-        setTitle("");
-        setCategory_id("");
-        setContent("");
-        setImage("");
+        // e.target.reset();
+        // setPost("");
+        // setTitle("");
+        // setCategory_id("");
+        // setContent("");
+        // setImage("");
         setMessage("User created successfully");
       } else {
         setMessage("Some error occured");
@@ -53,14 +73,14 @@ function SubmitPost() {
     hiddenFileInput.current.click();
   };
   const handleChange_img = (event) => {
-    setImage(event.target.value);
-    const fileUploaded = event.target.files[0];
+    setImage(event.target.files[0]);
     setFileName(event.target.value);
+    console.log("show" + event.target.files[0]);
   };
 
   return (
     <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12   form-box  ">
-      <h2>Post a blog post</h2>
+      <h2>Post a Content</h2>
       <form onSubmit={handleSubmit} className="mb-3">
         <label for="exampleFormControlInput1" className="form-label">
           Title Post
@@ -74,23 +94,26 @@ function SubmitPost() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <label for="exampleFormControlInput1" className="form-label mt-3">
-          Category number
+          Choose Category
         </label>
-        <input
-          type="number"
-          min="1"
-          max="3"
-          value={category_id}
-          placeholder="Category Number"
-          className="form-control"
-          id="exampleFormControlInput1"
+        <select
+          className="form-control arrow-btn"
+          id="exampleFormControlSelect1"
           onChange={(e) => setCategory_id(e.target.value)}
-        />
+          placeholder="Select category"
+        >
+          <option selected>Select category</option>
+          {choose_category.map((cat, key) => (
+            <option key={key} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
+
         <label for="exampleFormControlInput1" className="form-label mt-3">
           Image Post
         </label>
         <div className="upload-btn">
-          {/* {<FontAwesomeIcon icon={faCamera} size="2x" color="#ccc" />} */}
           <FaCamera size="30px" color="#ccc" mt-5 />
           <button type="button" onClick={handleClick}>
             Choose file
@@ -100,7 +123,7 @@ function SubmitPost() {
           type="file"
           name="image"
           accept="image/*"
-          value={image}
+          // value={image}
           id="formFile"
           ref={hiddenFileInput}
           className="form-control"
@@ -108,13 +131,14 @@ function SubmitPost() {
           hidden
         />
         <p>{fileName}</p>
+
         <label for="exampleFormControlInput1" className="form-label mt-3">
           Content Post
         </label>
         <textarea
           style={{ height: "40vh" }}
           value={content}
-          placeholder="content"
+          placeholder="Enter something..."
           className="form-control"
           id="exampleFormControlTextarea1"
           onChange={(e) => setContent(e.target.value)}
