@@ -6,11 +6,7 @@ import SubmitPost from "./Components/SubmitPost";
 import NavBars from "./Components/NavBars";
 
 function App() {
-  return (
-    <div>
-      <NavBars />
-    </div>
-  );
+  return <NavBars />;
 }
 
 export default App;

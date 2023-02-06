@@ -10,6 +10,7 @@ function Home() {
     <section className="main py-5">
       <div className="container">
         <div className="row justify-content-around">
+          <h1 className="page-title">Home</h1>
           <SubmitPost />
           <CallPost />
         </div>

@@ -84,11 +84,7 @@ function Blog() {
       <div className="col-12  all-post-list">
         {items.map((item) => {
           return (
-            <div
-              className="card  mb-4 Regular shadow"
-              style={{ width: "16rem" }}
-              key={item.id}
-            >
+            <div className="card  mb-4 Regular shadow" key={item.id}>
               <img src={postImg} className="card-img-top" alt={item.title} />
               <div className="date-cat">
                 {" "}

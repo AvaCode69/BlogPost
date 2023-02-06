@@ -9,34 +9,53 @@ import {
 import Blog from "./Blog";
 import Home from "./Home";
 import logo from "../images/logo.svg";
+import { useState } from "react";
+import { FaBars } from "react-icons/fa";
 
 export default function NavBars() {
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
   return (
     <Router>
       <header className="bg-sec-header">
-        <img className="logo-img" src={logo}></img>
+        <nav className="container navigation">
+          <img className="logo-img" src={logo}></img>
+          <button
+            className="hamburger"
+            onClick={() => {
+              setIsNavExpanded(!isNavExpanded);
+            }}
+          >
+            <FaBars size="30px" color="#fff" mt-5 />
+          </button>
 
-        <ul className="nav">
-          <li className="nav-item">
-            <NavLink
-              to="/"
-              exact
-              className="nav-link "
-              activeClassName=" is-active"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to="/blog"
-              className="nav-link "
-              activeClassName="is-active"
-            >
-              BLog
-            </NavLink>
-          </li>
-        </ul>
+          <div
+            className={
+              isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
+            }
+          >
+            <ul className="nav">
+              <li className="nav-item">
+                <NavLink
+                  to="/"
+                  exact
+                  className="nav-link "
+                  activeClassName=" is-active"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/blog"
+                  className="nav-link "
+                  activeClassName="is-active"
+                >
+                  BLog
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </header>
 
       <Switch>
@@ -50,6 +69,3 @@ export default function NavBars() {
     </Router>
   );
 }
-
-// You can think of these components as "pages"
-// in your app.
