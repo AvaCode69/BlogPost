@@ -1,4 +1,3 @@
-import Post from "./Post";
 import { useEffect, useState } from "react";
 import postImg from "../images/postImg.jpg";
 import React from "react";

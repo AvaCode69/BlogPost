@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { FaBeer, FaCamera } from "react-icons/fa";
+import { FaCamera } from "react-icons/fa";
+import { APIKEY, PostUrl, GetUrl } from "./Constants";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -14,14 +15,14 @@ function SubmitPost() {
 
   useEffect(() => {
     var myHeaders = new Headers();
-    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    myHeaders.append("token", APIKEY);
     var requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: myHeaders,
     };
 
-    fetch("https://frontend-case-api.sbdev.nl/api/categories", requestOptions)
+    fetch(GetUrl, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setChoose_category(result);
@@ -40,11 +41,11 @@ function SubmitPost() {
       formdata.append("image", image);
 
       var myHeaders = new Headers({
-        token: "pj11daaQRz7zUIH56B9Z",
+        token: APIKEY,
       });
 
       let res = await fetch(
-        "https://frontend-case-api.sbdev.nl/api/posts",
+        PostUrl,
 
         {
           method: "POST",

@@ -1,7 +1,8 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
-import postImg from "../images/postImg.jpg";
+import PostList from "./PostList";
+import { APIKEY, PostUrl } from "./Constants";
 
 function Blog() {
   const [items, setItems] = useState([]);
@@ -11,14 +12,14 @@ function Blog() {
   let limit = 8;
   useEffect(() => {
     var myHeaders = new Headers();
-    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    myHeaders.append("token", APIKEY);
     var requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: myHeaders,
     };
 
-    fetch("https://frontend-case-api.sbdev.nl/api/posts", requestOptions)
+    fetch(PostUrl, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setpageCount(result.total);
@@ -27,40 +28,36 @@ function Blog() {
   }, []);
   useEffect(() => {
     var myHeaders = new Headers();
-    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    myHeaders.append("token", APIKEY);
     var requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: myHeaders,
     };
-    const getComments = async () => {
+    const getPost = async () => {
       const res = await fetch(
-        `https://frontend-case-api.sbdev.nl/api/posts?page=1&perPage=${limit}&sortDirection=desc`,
+        `${PostUrl}?page=1&perPage=${limit}&sortDirection=desc`,
         requestOptions
-
-        //   `http://localhost:3004/comments?_page=1&_limit=${limit}`
-        // `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`
       );
 
       const result = await res.json();
-      // console.log(Math.ceil(total/12));
-      //   console.log("total " + total);
+
       setItems(result.data);
     };
 
-    getComments();
+    getPost();
   }, [limit]);
 
-  const fetchComments = async (currentPage) => {
+  const fetchPost = async (currentPage) => {
     var myHeaders = new Headers();
-    myHeaders.append("token", "pj11daaQRz7zUIH56B9Z");
+    myHeaders.append("token", APIKEY);
     var requestOptions = {
       method: "GET",
       redirect: "follow",
       headers: myHeaders,
     };
     const res = await fetch(
-      `https://frontend-case-api.sbdev.nl/api/posts?page=${currentPage}&perPage=${limit}&sortDirection=desc`,
+      `${PostUrl}?page=${currentPage}&perPage=${limit}&sortDirection=desc`,
       requestOptions
     );
     const result = await res.json();
@@ -72,9 +69,9 @@ function Blog() {
 
     let currentPage = num.selected + 1;
 
-    const commentsFormServer = await fetchComments(currentPage);
+    const postsFormServer = await fetchPost(currentPage);
 
-    setItems(commentsFormServer);
+    setItems(postsFormServer);
     // scroll to the top
     //window.scrollTo(0, 0)
   };
@@ -84,18 +81,14 @@ function Blog() {
       <div className="col-12  all-post-list">
         {items.map((item) => {
           return (
-            <div className="card  mb-4 Regular shadow" key={item.id}>
-              <img src={postImg} className="card-img-top" alt={item.title} />
-              <div className="date-cat">
-                {" "}
-                <p className="cat-post">{item.category.name}</p>
-                <p className="post-date">{item.created_at.slice(0, 10)}</p>
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">{item.content.substring(0, 200)}</p>
-              </div>
-            </div>
+            <PostList
+              title={item.title}
+              content={item.content}
+              image={item.image}
+              created_at={item.created_at}
+              id={item.id}
+              category_name={item.category.name}
+            />
           );
         })}
       </div>
