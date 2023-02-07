@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { FaCamera } from "react-icons/fa";
-import { APIKEY, PostUrl, CategoryUrl } from "./Constants";
-import FetchCategory from "../service/FetchCategory";
+import { SubmitPostApi, FetchCategory } from "../service/CallApi";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -18,49 +17,18 @@ function SubmitPost() {
     FetchCategory()
       .then((result) => {
         setChoose_category(result);
-        console.log(result);
       })
       .catch((error) => console.log("error", error));
   }, []);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      var formdata = new FormData();
-      formdata.append("title", title);
-      formdata.append("content", content);
-      formdata.append("category_id", category_id);
-      formdata.append("image", image);
 
-      var myHeaders = new Headers({
-        token: APIKEY,
-      });
-
-      let res = await fetch(
-        PostUrl,
-
-        {
-          method: "POST",
-          headers: myHeaders,
-          body: formdata,
-          redirect: "follow",
-        }
-      );
-      let resJson = await res.json();
-      if (res.status >= 200 && res.status <= 299) {
-        // e.target.reset();
-        // setPost("");
-        // setTitle("");
-        // setCategory_id("");
-        // setContent("");
-        // setImage("");
-        setMessage("User created successfully");
-      } else {
-        setMessage("Some error occured");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    SubmitPostApi({ title, content, category_id, image })
+      .then((result) => {
+        setMessage("Post Created successfully");
+      })
+      .catch((error) => setMessage("An Errors occurred to posting data"));
   };
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -68,7 +36,6 @@ function SubmitPost() {
   const handleChange_img = (event) => {
     setImage(event.target.files[0]);
     setFileName(event.target.value);
-    console.log("show" + event.target.files[0]);
   };
 
   return (
@@ -117,7 +84,6 @@ function SubmitPost() {
             type="file"
             name="image"
             accept="image/*"
-            // value={image}
             id="formFile"
             ref={hiddenFileInput}
             className="form-control"
@@ -141,8 +107,9 @@ function SubmitPost() {
           <button type="submit" className="submit-btn">
             Create post
           </button>
-
-          <div className="message">{message ? <p>{message}</p> : null}</div>
+          <div className="text-center pt-3">
+            {message ? <p>{message}</p> : null}
+          </div>
         </form>
       </div>
     </div>

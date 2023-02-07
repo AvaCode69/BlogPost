@@ -6,8 +6,8 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-import Blog from "./Blog";
-import Home from "./Home";
+import Blog from "./BlogPage/Blog";
+import Home from "./HomePage/Home";
 import logo from "../images/logo.svg";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";

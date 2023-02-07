@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import postImg from "../images/postImg.jpg";
 import React from "react";
 import HomePost from "./HomePost";
-import SubmitPost from "./SubmitPost";
+import SubmitPost from "../SubmitPost";
 
 function Home() {
   return (

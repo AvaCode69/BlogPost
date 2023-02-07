@@ -1,40 +1,34 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import PostList from "./PostList";
-import { APIKEY, PostUrl } from "./Constants";
-import HomePostApi from "../service/HomePostApi";
-import fetchAllPost from "../service/fetchAllPost";
+import PostList from "../PostList";
+import { FetchCountAllPost, FetchPostApi } from "../../service/CallApi";
 
 function HomePost() {
-  const [post, setPost] = useState([]);
-  const [error, setError] = useState(false);
+  const [items, setItems] = useState([]);
   const [visible_post, setVisible_post] = useState(4);
-  const [pageCount, setpageCount] = useState(0);
+  const [getTotalPage, setGetTotalPage] = useState(0);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetchAllPost()
+    FetchCountAllPost()
       .then((result) => {
-        setpageCount(result.total);
+        setGetTotalPage(result.total);
       })
       .catch((error) => console.log("error", error));
-  }, []);
+  }, [visible_post]);
 
   useEffect(() => {
-    HomePostApi()
+    FetchPostApi(1, 150)
       .then((result) => {
-        setPost(result.data);
+        setItems(result.data);
       })
-      .catch((error) => {
-        setError({
-          error: true,
-        });
-      });
+      .catch((error) => setMessage("No Post Available"));
   }, []);
 
   return (
     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 wrap-post ">
       <div className="post-list mt-4">
-        {post.slice(0, visible_post).map((item, index) => (
+        {items.slice(0, visible_post).map((item, index) => (
           <PostList
             title={item.title}
             content={item.content}
@@ -45,8 +39,9 @@ function HomePost() {
           />
         ))}
       </div>
+      <p className="text-center pb-3"> {message}</p>
 
-      {visible_post < pageCount && (
+      {visible_post < getTotalPage ? (
         <button
           onClick={() => setVisible_post(visible_post + 4)}
           type="button"
@@ -54,6 +49,8 @@ function HomePost() {
         >
           Load more
         </button>
+      ) : (
+        <p className="text-center pb-3">No more posts to show</p>
       )}
     </div>
   );
