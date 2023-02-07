@@ -45,7 +45,7 @@ function HomePost() {
         <button
           onClick={() => setVisible_post(visible_post + 4)}
           type="button"
-          className="submit-btn"
+          className="round-btn "
         >
           Load more
         </button>

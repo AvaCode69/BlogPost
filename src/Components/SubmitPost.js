@@ -74,7 +74,7 @@ function SubmitPost() {
           <label for="exampleFormControlInput1" className="form-label mt-3">
             Image Post
           </label>
-          <div className="upload-btn">
+          <div className="upload-box">
             <FaCamera size="30px" color="#ccc" mt-5 />
             <button type="button" onClick={handleClick}>
               Choose file
@@ -104,7 +104,7 @@ function SubmitPost() {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          <button type="submit" className="submit-btn">
+          <button type="submit" className="round-btn">
             Create post
           </button>
           <div className="text-center pt-3">
