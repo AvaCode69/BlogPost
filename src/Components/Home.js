@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import postImg from "../images/postImg.jpg";
 import React from "react";
-import CallPost from "./CallPost";
+import HomePost from "./HomePost";
 import SubmitPost from "./SubmitPost";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
         <div className="row justify-content-around">
           <h1 className="page-title">Home</h1>
           <SubmitPost />
-          <CallPost />
+          <HomePost />
         </div>
       </div>
     </section>

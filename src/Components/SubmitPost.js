@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { FaCamera } from "react-icons/fa";
-import { APIKEY, PostUrl, GetUrl } from "./Constants";
+import { APIKEY, PostUrl, CategoryUrl } from "./Constants";
+import FetchCategory from "../service/FetchCategory";
 
 function SubmitPost() {
   const [title, setTitle] = useState("");
@@ -14,16 +15,7 @@ function SubmitPost() {
   const hiddenFileInput = React.useRef(null);
 
   useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-
-    fetch(GetUrl, requestOptions)
-      .then((response) => response.json())
+    FetchCategory()
       .then((result) => {
         setChoose_category(result);
         console.log(result);

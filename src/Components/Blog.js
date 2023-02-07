@@ -3,77 +3,31 @@ import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import PostList from "./PostList";
 import { APIKEY, PostUrl } from "./Constants";
+import BlogPostApi from "../service/BlogPostApi";
+import fetchAllPost from "../service/fetchAllPost";
 
 function Blog() {
   const [items, setItems] = useState([]);
 
   const [pageCount, setpageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  let limit = 8;
   useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-
-    fetch(PostUrl, requestOptions)
-      .then((response) => response.json())
+    fetchAllPost()
       .then((result) => {
         setpageCount(result.total);
       })
       .catch((error) => console.log("error", error));
   }, []);
+
   useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-    const getPost = async () => {
-      const res = await fetch(
-        `${PostUrl}?page=1&perPage=${limit}&sortDirection=desc`,
-        requestOptions
-      );
-
-      const result = await res.json();
-
+    BlogPostApi(currentPage).then((result) => {
       setItems(result.data);
-    };
+    });
+  }, [currentPage]);
 
-    getPost();
-  }, [limit]);
-
-  const fetchPost = async (currentPage) => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-    const res = await fetch(
-      `${PostUrl}?page=${currentPage}&perPage=${limit}&sortDirection=desc`,
-      requestOptions
-    );
-    const result = await res.json();
-    return result.data;
-  };
-
-  const handlePageClick = async (num) => {
-    console.log(num.selected);
-
-    let currentPage = num.selected + 1;
-
-    const postsFormServer = await fetchPost(currentPage);
-
-    setItems(postsFormServer);
-    // scroll to the top
-    //window.scrollTo(0, 0)
+  const handlePageClick = (num) => {
+    setCurrentPage(num.selected + 1);
   };
   return (
     <div className="container blog-page pb-4">

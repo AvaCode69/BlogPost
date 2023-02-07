@@ -2,24 +2,17 @@ import { useEffect, useState } from "react";
 import React from "react";
 import PostList from "./PostList";
 import { APIKEY, PostUrl } from "./Constants";
+import HomePostApi from "../service/HomePostApi";
+import fetchAllPost from "../service/fetchAllPost";
 
-function CallPost() {
+function HomePost() {
   const [post, setPost] = useState([]);
   const [error, setError] = useState(false);
   const [visible_post, setVisible_post] = useState(4);
   const [pageCount, setpageCount] = useState(0);
 
   useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-
-    fetch(PostUrl, requestOptions)
-      .then((response) => response.json())
+    fetchAllPost()
       .then((result) => {
         setpageCount(result.total);
       })
@@ -27,20 +20,10 @@ function CallPost() {
   }, []);
 
   useEffect(() => {
-    var myHeaders = new Headers();
-    myHeaders.append("token", APIKEY);
-    var requestOptions = {
-      method: "GET",
-      redirect: "follow",
-      headers: myHeaders,
-    };
-
-    let res = fetch(`${PostUrl}?page=1&perPage=50`, requestOptions)
-      .then((response) => response.json())
+    HomePostApi()
       .then((result) => {
         setPost(result.data);
       })
-
       .catch((error) => {
         setError({
           error: true,
@@ -76,4 +59,4 @@ function CallPost() {
   );
 }
 
-export default CallPost;
+export default HomePost;
