@@ -4,6 +4,7 @@
   "description": "A simple example deployed using react-codesandboxer",
   "main": "index.js",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "bootstrap": "^5.2.3",
     "react": "latest",
     "react-dom": "latest",
@@ -30,5 +31,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "react-test-renderer": "^18.2.0"
   }
 }

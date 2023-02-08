@@ -11,6 +11,7 @@ function SubmitPost() {
   const [message, setMessage] = useState("");
   const [choose_category, setChoose_category] = useState([]);
   const [fileName, setFileName] = useState("");
+  const [limitContent, setlimitContent] = useState("");
   const hiddenFileInput = React.useRef(null);
 
   useEffect(() => {
@@ -26,10 +27,24 @@ function SubmitPost() {
 
     SubmitPostApi({ title, content, category_id, image })
       .then((result) => {
-        setMessage("Post Created successfully");
+        setMessage(<p text-success>Post Created successfully</p>);
+        setTimeout(() => {
+          setMessage(" ");
+        }, 5000);
       })
-      .catch((error) => setMessage("An Errors occurred to posting data"));
+      .catch(
+        (error) =>
+          setMessage(
+            <p className="text-danger">
+              An Errors occurred in posting data, All fields are required
+            </p>
+          ),
+        setTimeout(() => {
+          setMessage(" ");
+        }, 5000)
+      );
   };
+
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
@@ -37,6 +52,21 @@ function SubmitPost() {
     setImage(event.target.files[0]);
     setFileName(event.target.value);
   };
+
+  function handleContent(e) {
+    setContent(e.target.value);
+    if (content.length > 255) {
+      console.log("limitContent " + content.length);
+      setlimitContent(
+        <p className="text-danger">
+          The content may not be greater than 255 characters
+        </p>
+      );
+      setTimeout(() => {
+        setlimitContent(" ");
+      }, 5000);
+    }
+  }
 
   return (
     <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12    ">
@@ -96,19 +126,21 @@ function SubmitPost() {
             Content Post
           </label>
           <textarea
+            // maxlength="255"
             rows="10"
             value={content}
             placeholder="Enter something..."
             className="form-control"
             id="exampleFormControlTextarea1"
-            onChange={(e) => setContent(e.target.value)}
+            onChange={handleContent}
           />
 
           <button type="submit" className="round-btn">
             Create post
           </button>
           <div className="text-center pt-3">
-            {message ? <p>{message}</p> : null}
+            {message}
+            {limitContent}
           </div>
         </form>
       </div>
