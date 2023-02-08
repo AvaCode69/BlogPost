@@ -26,8 +26,8 @@ function HomePost() {
   }, []);
 
   return (
-    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 wrap-post ">
-      <div className="post-list mt-4">
+    <div className="wrap-post ">
+      <div className="post-list mt-3">
         {items.slice(0, visible_post).map((item, index) => (
           <PostList
             title={item.title}
@@ -39,13 +39,12 @@ function HomePost() {
           />
         ))}
       </div>
-      <p className="text-center pb-3"> {message}</p>
 
       {visible_post < getTotalPage ? (
         <button
           onClick={() => setVisible_post(visible_post + 4)}
           type="button"
-          className="round-btn "
+          className="round-btn mt-3"
           id="btnTst"
         >
           Load more
@@ -53,6 +52,8 @@ function HomePost() {
       ) : (
         <p className="text-center pb-3">No more posts to show</p>
       )}
+
+      <p className="text-center pb-3"> {message}</p>
     </div>
   );
 }

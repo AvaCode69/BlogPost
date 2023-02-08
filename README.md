@@ -18,6 +18,7 @@ React Js, NodeJS,Bootstrap </br></br>
   -using Material UI instead of bootstrap
   -using TypeScripe
   - making Structured, reusable code more
+    -Writing better unit tests
 
 ## Some screenshots:
 

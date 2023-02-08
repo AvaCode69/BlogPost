@@ -14,7 +14,7 @@ function PostList(props) {
       </div>
       <div className="card-body">
         <h5 className="card-title">{props.title}</h5>
-        <p className="card-text">{props.content.substring(0, 200)}</p>
+        <p className="card-text">{props.content.substring(0, 140)}</p>
       </div>
     </div>
   );

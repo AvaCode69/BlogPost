@@ -73,7 +73,7 @@ function SubmitPost() {
   }
 
   return (
-    <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12    ">
+    <div className="">
       <div className="bg-white form-box ">
         <h2>Post a Content</h2>
         <form onSubmit={handleSubmit} className="mb-3">
@@ -139,7 +139,7 @@ function SubmitPost() {
             onChange={handleContent}
           />
 
-          <button type="submit" className="round-btn">
+          <button type="submit" className="round-btn mt-3">
             Create post
           </button>
           <div className="text-center pt-3">

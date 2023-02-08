@@ -65,18 +65,20 @@ nav ul a {
 }
 .form-box {
   padding: 2rem 2.5rem !important;
-  line-height: 3rem;
+  line-height: 3.3rem;
 }
 .form-box .form-label {
   margin-bottom: 0 !important;
   color: var(--clr-primary-7);
 }
+textarea {
+  margin-bottom: 3rem !important;
+}
 .round-btn {
   background: var(--clr-primary-8);
-  padding: 0 7rem;
+  width: 17rem;
   border-radius: 3rem;
   margin: 0 auto;
-  margin-top: 0px;
   display: block;
   margin-top: 2rem;
   color: var(--clr-primary-1);
@@ -84,6 +86,7 @@ nav ul a {
   font-weight: var(--font-weight-1);
   height: 3rem;
   border: none !important;
+  line-height: 0;
 }
 .arrow-btn {
   appearance: button !important;
@@ -120,7 +123,7 @@ nav ul a {
 }
 .card-text {
   color: var(--clr-primary-10);
-  font-size: clamp(0.9rem, -0.2159rem + 1.1818vw, 2rem);
+
   line-height: 1.6rem;
 }
 .card {
@@ -177,7 +180,7 @@ nav ul a {
   text-align: center;
   right: 0;
   left: 0;
-  top: 22%;
+  top: 29vh;
   color: var(--clr-primary-1);
   font-size: 4.1rem !important;
   font-weight: var(--font-weight-1);
@@ -217,6 +220,11 @@ nav ul a {
   .post-list {
     grid-template-columns: 1fr 1fr;
   }
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+  }
   .all-post-list {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -224,6 +232,14 @@ nav ul a {
 @media (min-width: 768px) and (max-width: 1199px) {
   .all-post-list {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card-text {
+    font-size: clamp(0.9rem, -0.2159rem + 1.1818vw, 2rem);
+  }
+  .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
   }
 }
 
@@ -307,9 +323,9 @@ nav ul a {
     top: 6rem;
     left: 0;
     width: 100%;
-    height: auto;
     background-color: var(--clr-primary-1);
-    display: none;
+    overflow: hidden;
+    height: 0;
   }
 
   .navigation-menu li {
@@ -328,8 +344,9 @@ nav ul a {
     background-color: #eee;
   }
 
-  .navigation-menu.expanded ul {
-    display: block;
+  .expanded.navigation-menu ul {
+    height: 50vh;
+    transition: height 0.3s ease-in;
     z-index: 9;
   }
 }

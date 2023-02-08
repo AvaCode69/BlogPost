@@ -5,13 +5,11 @@ import SubmitPost from "../SubmitPost";
 
 function Home() {
   return (
-    <section className="main py-5">
-      <div className="container">
-        <div className="row justify-content-around">
-          <h1 className="page-title">Home</h1>
-          <SubmitPost />
-          <HomePost />
-        </div>
+    <section className=" py-5">
+      <div className="container main">
+        <h1 className="page-title">Home</h1>
+        <SubmitPost />
+        <HomePost />
       </div>
     </section>
   );
