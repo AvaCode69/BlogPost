@@ -12,6 +12,10 @@
   --clr-primary-11: hsl(0, 0%, 95%);
   --clr-primary-12: hsl(0, 0%, 22%);
   --clr-primary-13: hsl(0, 0%, 22%);
+
+  --font-weight-1: 700;
+  --font-weight-2: 900;
+  --font-size-1: 1.4rem;
 }
 
 body {
@@ -25,19 +29,24 @@ input,
 label {
   font-family: "Roboto", sans-serif !important;
 }
-
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
 .bg-sec-header {
   background: url("./images/Header.jpg") no-repeat;
-  min-height: 450px;
+  min-height: 62vh;
   background-size: cover;
 }
 .logo-img {
-  width: 285px;
-  height: 93px;
+  width: 17rem;
+  height: 5rem;
 }
 nav ul a {
   color: var(--clr-primary-1);
-  font-size: 20px;
+  font-size: 4rem;
 }
 
 .wrap-post {
@@ -71,8 +80,8 @@ nav ul a {
   display: block;
   margin-top: 2rem;
   color: var(--clr-primary-1);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-1);
   height: 3rem;
   border: none !important;
 }
@@ -80,8 +89,8 @@ nav ul a {
   appearance: button !important;
 }
 .nav-item a {
-  font-size: 18px !important;
-  text-decoration: none;
+  font-size: var(--font-size-1) !important;
+
   color: var(--clr-primary-1);
 }
 .nav-link:focus,
@@ -104,7 +113,6 @@ nav ul a {
   display: block;
 }
 
-/* .is-active:hover::before, */
 .is-active::before {
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -112,10 +120,8 @@ nav ul a {
 }
 .card-text {
   color: var(--clr-primary-10);
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 19px;
-  text-align: justify;
+  font-size: clamp(0.9rem, -0.2159rem + 1.1818vw, 2rem);
+  line-height: 1.6rem;
 }
 .card {
   margin: 0 1.3rem;
@@ -125,9 +131,10 @@ nav ul a {
 }
 .card-title {
   color: var(--clr-primary-2);
-  font-size: 24px;
-  font-weight: 900;
+  font-size: clamp(1.3rem, -0.2452rem + 1.7841vw, 3.1rem);
+  font-weight: var(--font-weight-2);
   line-height: 29px;
+  text-transform: capitalize;
 }
 .all-post-list {
   margin-top: 3rem;
@@ -153,7 +160,7 @@ nav ul a {
 .active > .page-link,
 .page-link.active {
   color: var(--clr-primary-12) !important;
-  font-weight: 900;
+  font-weight: var(--font-weight-2);
 }
 .page-prev-link a,
 .page-next-item a {
@@ -170,10 +177,10 @@ nav ul a {
   text-align: center;
   right: 0;
   left: 0;
-  top: 10rem;
+  top: 22%;
   color: var(--clr-primary-1);
-  font-size: 67px !important;
-  font-weight: 700;
+  font-size: 4.1rem !important;
+  font-weight: var(--font-weight-1);
 }
 .date-cat {
   display: flex;
@@ -207,19 +214,19 @@ nav ul a {
 }
 
 @media screen and (min-width: 768px) {
-  .post-list,
-  .all-post-list {
+  .post-list {
     grid-template-columns: 1fr 1fr;
   }
   .all-post-list {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .all-post-list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
 /*---------mobile menu style---------------*/
 
 .navigation {
@@ -234,13 +241,6 @@ nav ul a {
   padding-top: 5rem;
 }
 
-.brand-name {
-  text-decoration: none;
-  color: var(--clr-primary-13);
-  font-size: 1.3rem;
-  margin-left: 1rem;
-}
-
 .navigation-menu {
   margin-left: auto;
 }
@@ -251,12 +251,10 @@ nav ul a {
 }
 
 .navigation-menu li {
-  list-style-type: none;
   margin: 0 1rem;
 }
 
 .navigation-menu li a {
-  text-decoration: none;
   display: block;
   width: 100%;
 }
@@ -284,14 +282,14 @@ nav ul a {
     border: none !important;
     background: none;
     color: var(--clr-primary-12);
-    font-size: 11px !important;
+    font-size: 0.7rem !important;
   }
   .nav-link:focus,
   .nav-link:hover {
     color: var(--clr-primary-9) !important;
   }
   .nav-link::before {
-    bottom: -53px;
+    bottom: -3.7rem;
   }
   .logo-img {
     height: auto;

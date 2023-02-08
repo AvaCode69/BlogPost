@@ -8,7 +8,7 @@ function SubmitPost() {
   const [category_id, setCategory_id] = useState("");
   const [image, setImage] = useState("");
   const [content, setContent] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState([]);
   const [choose_category, setChoose_category] = useState([]);
   const [fileName, setFileName] = useState("");
   const [limitContent, setlimitContent] = useState("");
@@ -27,7 +27,11 @@ function SubmitPost() {
 
     SubmitPostApi({ title, content, category_id, image })
       .then((result) => {
-        setMessage(<p text-success>Post Created successfully</p>);
+        setTitle("");
+        setCategory_id("");
+        setContent("");
+        setImage("");
+        setMessage(<p className="text-success">Post Created successfully</p>);
         setTimeout(() => {
           setMessage(" ");
         }, 5000);
