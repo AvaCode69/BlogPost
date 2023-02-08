@@ -1,5 +1,4 @@
 import React from "react";
-import ReactPaginate from "react-paginate";
 import { useEffect, useState } from "react";
 import PostList from "../PostList";
 import { FetchCountAllPost, FetchPostApi } from "../../service/CallApi";

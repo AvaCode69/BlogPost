@@ -20,7 +20,6 @@ React Js, NodeJS,Bootstrap </br></br>
   - making Structured, reusable code more
     -Writing better unit tests
 
-## Some screenshots:
+## Linke of live Demo
 
-<img width="350px" src="https://github.com/AvresCode/Expat-Hub-Frontend/blob/master/public/screenshots/expat2.JPG"></img>
-<img width="350px" src="https://github.com/AvresCode/Expat-Hub-Frontend/blob/master/public/screenshots/expat9.JPG"></img></br></br>
+https://blogpost69.netlify.app/blog

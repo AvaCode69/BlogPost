@@ -73,7 +73,7 @@ function SubmitPost() {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="bg-white form-box ">
         <h2>Post a Content</h2>
         <form onSubmit={handleSubmit} className="mb-3">

@@ -50,7 +50,7 @@ export default function NavBars() {
                   className="nav-link "
                   activeClassName="is-active"
                 >
-                  BLog
+                  Blog
                 </NavLink>
               </li>
             </ul>
