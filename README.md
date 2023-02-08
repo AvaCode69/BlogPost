@@ -5,8 +5,11 @@ Blog Post is a project in that users can post content by form. in the right part
 ## Some features are :
 
 - users couldn't send the empty form if files be emty , error message is shown to users.
+
   -Error message disappear after 5 seconds
+  
   -when users press load more button a lot , after loading all posts, finally there is shown (No more posts to show) message to users
+  
 
 ## Stack
 
