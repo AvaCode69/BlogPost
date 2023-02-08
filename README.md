@@ -22,4 +22,4 @@ React Js, NodeJS,Bootstrap </br></br>
 
 ## Linke of live Demo
 
-https://blogpost69.netlify.app/blog
+https://blogpost69.netlify.app/
