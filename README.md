@@ -23,3 +23,8 @@ React Js, NodeJS,Bootstrap </br></br>
 ## Linke of live Demo
 
 https://blogpost69.netlify.app/
+
+## Some screenshots:
+
+![homePage](https://user-images.githubusercontent.com/122700888/217621055-e8fe3cf4-c905-41e7-86b2-11bee1c61292.png)
+
