@@ -25,6 +25,6 @@ React Js, NodeJS,Bootstrap </br></br>
 https://blogpost69.netlify.app/
 
 ## Some screenshots:
-
 <img width="350px" src="https://user-images.githubusercontent.com/122700888/217621055-e8fe3cf4-c905-41e7-86b2-11bee1c61292.png"></img> 
-
+<img width="350px" src="https://user-images.githubusercontent.com/122700888/217621868-fc051ae3-4645-41c8-8805-53d3705353c2.png
+"></img></br></br>
