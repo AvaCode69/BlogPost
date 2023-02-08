@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import PostList from "../PostList";
+import PostList from "../PostLists";
 import { FetchCountAllPost, FetchPostApi } from "../../service/CallApi";
 import Pagination from "./Pagination";
 

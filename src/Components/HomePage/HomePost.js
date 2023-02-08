@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import PostList from "../PostList";
+import PostList from "../PostLists";
 import { FetchCountAllPost, FetchPostApi } from "../../service/CallApi";
 
 function HomePost() {
