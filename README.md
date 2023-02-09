@@ -11,7 +11,7 @@ Blog Post is a project in that users can post content by form. in the right part
 
 ## Stack
 
-React Js, NodeJS,Bootstrap </br></br>
+React Js,Bootstrap </br></br>
 
 ## Not completed feature:
 
