@@ -21,6 +21,11 @@ React Js,Bootstrap </br></br>
   - making Structured, reusable code more
     -Writing better unit tests
     -Config ESLint & Prettier
+    - use Vite instead of CRA
+
+## Problem In Api image link
+
+In Api image link had problem(I uploaded images by form or by Postman too, but was not displayed the image) and because of this reason, I used hardcoding for images.
 
 ## Linke of live Demo
 
