@@ -20,6 +20,7 @@ React Js, NodeJS,Bootstrap </br></br>
   -using TypeScripe
   - making Structured, reusable code more
     -Writing better unit tests
+    -Config ESLint & Prettier
 
 ## Linke of live Demo
 
