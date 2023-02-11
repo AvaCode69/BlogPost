@@ -21,7 +21,7 @@ React Js,Bootstrap </br></br>
   - making Structured, reusable code more
     -Writing better unit tests
     -Config ESLint & Prettier
-    - use Vite instead of CRA
+    - using Vite instead of CRA
 
 ## Problem In Api image link
 

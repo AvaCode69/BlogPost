@@ -1,16 +1,15 @@
 import { APIKEY, PostUrl, CategoryUrl } from "../Components/Constants";
 
 // call Api for get post for Home_page and blog_page
+var myHeaders = new Headers();
+myHeaders.append("token", APIKEY);
+var requestOptions = {
+  method: "GET",
+  redirect: "follow",
+  headers: myHeaders,
+};
 
 async function FetchPostApi(currentPage, limit) {
-  var myHeaders = new Headers();
-  myHeaders.append("token", APIKEY);
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    headers: myHeaders,
-  };
-
   const response = await fetch(
     `${PostUrl}?page=${currentPage}&perPage=${limit}&sortDirection=desc`,
     requestOptions
@@ -24,13 +23,6 @@ async function FetchPostApi(currentPage, limit) {
 
 // call Api for get count of all post
 async function FetchCountAllPost() {
-  var myHeaders = new Headers();
-  myHeaders.append("token", APIKEY);
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    headers: myHeaders,
-  };
   const response = await fetch(PostUrl, requestOptions);
   if (!response.ok) {
     throw new Error("Data coud not be fetched!");
@@ -41,14 +33,6 @@ async function FetchCountAllPost() {
 
 // call Api for get category
 async function FetchCategory() {
-  var myHeaders = new Headers();
-  myHeaders.append("token", APIKEY);
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    headers: myHeaders,
-  };
-
   const response = await fetch(CategoryUrl, requestOptions);
   if (!response.ok) {
     throw new Error("Data coud not be fetched!");
@@ -65,8 +49,6 @@ async function SubmitPostApi({ title, content, category_id, image }) {
   formdata.append("category_id", category_id);
   formdata.append("image", image);
 
-  var myHeaders = new Headers();
-  myHeaders.append("token", APIKEY);
   var requestOptions = {
     method: "POST",
     headers: myHeaders,
